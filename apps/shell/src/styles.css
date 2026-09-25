@@ -1,0 +1,9 @@
+:root {
+  --navy: #253858;
+  --orange: #e8590c;
+  --line: #dfe3e8;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--navy);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }

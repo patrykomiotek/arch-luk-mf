@@ -1,0 +1,100 @@
+{
+  "name": "shell",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/shell/src",
+  "tags": [
+    "scope:shell",
+    "type:app"
+  ],
+  "targets": {
+    "esbuild": {
+      "executor": "@angular/build:application",
+      "options": {
+        "browser": "apps/shell/src/main.ts",
+        "index": "apps/shell/src/index.html",
+        "tsConfig": "apps/shell/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/shell/public"
+          }
+        ],
+        "styles": [
+          "apps/shell/src/styles.css"
+        ],
+        "outputPath": "dist/apps/shell",
+        "polyfills": [
+          "es-module-shims"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "shell:esbuild:production"
+        },
+        "development": {
+          "target": "shell:esbuild:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{workspaceRoot}/dist/apps/shell"
+      ]
+    },
+    "serve-original": {
+      "executor": "@angular/build:dev-server",
+      "options": {
+        "port": 4200
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "shell:esbuild:production"
+        },
+        "development": {
+          "buildTarget": "shell:esbuild:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "target": "shell:serve-original:development",
+        "rebuildDelay": 0,
+        "dev": true,
+        "port": 4200,
+        "open": false
+      }
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "tsConfig": "apps/shell/tsconfig.spec.json",
+        "buildTarget": "shell:esbuild"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/shell --max-warnings 0",
+        "cwd": "{workspaceRoot}"
+      }
+    }
+  }
+}
