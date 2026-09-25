@@ -1,0 +1,100 @@
+{
+  "name": "flights",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/flights/src",
+  "tags": [
+    "scope:flights",
+    "type:app"
+  ],
+  "targets": {
+    "esbuild": {
+      "executor": "@angular/build:application",
+      "options": {
+        "browser": "apps/flights/src/main.ts",
+        "index": "apps/flights/src/index.html",
+        "tsConfig": "apps/flights/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/flights/public"
+          }
+        ],
+        "styles": [
+          "apps/flights/src/styles.css"
+        ],
+        "outputPath": "dist/apps/flights",
+        "polyfills": [
+          "es-module-shims"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "flights:esbuild:production"
+        },
+        "development": {
+          "target": "flights:esbuild:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{workspaceRoot}/dist/apps/flights"
+      ]
+    },
+    "serve-original": {
+      "executor": "@angular/build:dev-server",
+      "options": {
+        "port": 4201
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "flights:esbuild:production"
+        },
+        "development": {
+          "buildTarget": "flights:esbuild:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "target": "flights:serve-original:development",
+        "rebuildDelay": 0,
+        "dev": true,
+        "port": 4201,
+        "open": false
+      }
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "tsConfig": "apps/flights/tsconfig.spec.json",
+        "buildTarget": "flights:esbuild"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint apps/flights --max-warnings 0",
+        "cwd": "{workspaceRoot}"
+      }
+    }
+  }
+}
