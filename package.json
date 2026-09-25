@@ -1,0 +1,49 @@
+{
+  "name": "lukasiewicz-mf",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "start": "nx run-many -t serve -p shell flights",
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test && npm run test:architecture",
+    "lint": "nx run-many -t lint",
+    "graph": "nx graph",
+    "affected": "nx affected -t lint test build",
+    "test:architecture": "vitest run --config vitest.architecture.config.ts",
+    "test:cwiczenia": "vitest run --config vitest.cwiczenia.config.ts"
+  },
+  "devDependencies": {
+    "@angular-architects/native-federation": "21.2.6",
+    "@angular/build": "21.2.0",
+    "@angular/cli": "21.2.0",
+    "@angular/compiler-cli": "21.2.0",
+    "@nx/angular": "23.2.1",
+    "@nx/eslint": "23.2.1",
+    "@nx/eslint-plugin": "23.2.1",
+    "@nx/js": "23.2.1",
+    "@nx/vite": "23.2.1",
+    "angular-eslint": "^21.0.0",
+    "eslint": "^9.0.0",
+    "happy-dom": "^20.0.0",
+    "nx": "23.2.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^4.0.0"
+  },
+  "dependencies": {
+    "@angular/animations": "^21.2.0",
+    "@angular/common": "21.2.0",
+    "@angular/compiler": "21.2.0",
+    "@angular/core": "21.2.0",
+    "@angular/platform-browser": "21.2.0",
+    "@angular/router": "21.2.0",
+    "es-module-shims": "^2.8.4",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  }
+}

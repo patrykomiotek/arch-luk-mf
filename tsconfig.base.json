@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "dom"],
+    "types": [],
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@mf/contracts": ["libs/shared-contracts/src/index.ts"],
+      "@mf/ui": ["libs/shared-ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
