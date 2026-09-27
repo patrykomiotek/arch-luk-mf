@@ -1,7 +1,7 @@
 ---
-title: 'shareAll() bierze wszystko z package.json i z tsconfig paths, także to, czego nie używasz'
-areas: ['federacja']
-topics: ['native-federation', 'shared', 'build']
+tytul: 'shareAll() bierze wszystko z package.json i z tsconfig paths, także to, czego nie używasz'
+obszary: ['federacja']
+tematy: ['native-federation', 'shared', 'build']
 ---
 
 # `shareAll()` bierze wszystko z package.json i z tsconfig paths, także to, czego nie używasz

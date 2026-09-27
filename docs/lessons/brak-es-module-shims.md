@@ -1,7 +1,7 @@
 ---
-title: 'Skrypt typu, którego przeglądarka nie zna, jest ignorowany po cichu'
-areas: ['federacja']
-topics: ['native-federation', 'polyfills', 'fail-silent']
+tytul: 'Skrypt typu, którego przeglądarka nie zna, jest ignorowany po cichu'
+obszary: ['federacja']
+tematy: ['native-federation', 'polyfills', 'fail-silent']
 ---
 
 # Skrypt typu, którego przeglądarka nie zna, jest ignorowany po cichu

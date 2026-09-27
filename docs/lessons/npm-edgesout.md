@@ -1,7 +1,7 @@
 ---
-title: 'npm install wywraca się na edgesOut i to nie jest błąd projektu'
-areas: ['narzędzia']
-topics: ['npm', 'peer-dependencies']
+tytul: 'npm install wywraca się na edgesOut i to nie jest błąd projektu'
+obszary: ['narzędzia']
+tematy: ['npm', 'peer-dependencies']
 ---
 
 # `npm install` wywraca się na `edgesOut` i to nie jest błąd projektu

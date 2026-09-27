@@ -26,7 +26,7 @@ npx nx test shared-contracts
 npx vitest run --config vitest.cwiczenia.config.ts   # testy ćwiczeń
 ```
 
-## Task Router
+## Router zadań
 
 Zanim zaczniesz nietrywialne zadanie, dopasuj je do tabeli i przeczytaj
 wskazane pliki. Sprawdź też `docs/lessons.md` dla właściwego obszaru, żeby nie

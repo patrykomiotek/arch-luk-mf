@@ -39,7 +39,9 @@ Po nietrywialnej korekcie albo nieoczywistej pułapce:
 
 1. Sprawdź, czy istniejąca lekcja już tego nie pokrywa - rozszerz ją zamiast
    tworzyć bliźniaka.
-2. Dodaj plik `docs/lessons/<slug>.md` w czterech sekcjach.
+2. Dodaj plik `docs/lessons/<slug>.md` w czterech sekcjach: **Kontekst**,
+   **Problem**, **Reguła**, **Dotyczy**. W nagłówku YAML podaj `tytul`,
+   `obszary` i `tematy` - po nich agent filtruje, czego szukać.
 3. Dodaj **jeden bullet** do właściwej sekcji wyżej.
 
 Tytuł lekcji jest **zdaniem orzekającym**, nie tematem. Sprawdzian: czy ktoś
