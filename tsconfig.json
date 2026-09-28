@@ -1,0 +1,15 @@
+{
+  // Konfiguracja WYŁĄCZNIE dla plików spoza apps/ i libs/: testów
+  // architektonicznych, ćwiczeń i configów Vitesta. Aplikacje i biblioteki
+  // mają własne tsconfig.json i edytor wybierze tamte, bo są bliżej pliku.
+  //
+  // Bez tego pliku edytor nie wiedział, czym są `node:fs` i `import.meta.dirname`,
+  // i podkreślał na czerwono kod, który uruchamiał się poprawnie.
+  // `tsconfig.base.json` ma `"types": []`, więc typy Node'a trzeba włączyć tutaj.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "vitest/globals"],
+    "noEmit": true
+  },
+  "include": ["tests/**/*.ts", "cwiczenia/**/*.ts", "vitest.*.config.ts"]
+}

@@ -5,9 +5,7 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts",
-    "../../libs/shared-contracts/src/index.ts",
-    "../../libs/shared-ui/src/index.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"
