@@ -1,7 +1,7 @@
-import { globSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { globSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
 /**
  * Dwa testy na to samo pytanie: czy reguła jest WPIĘTA, a nie tylko napisana.
@@ -15,21 +15,21 @@ import { describe, expect, it } from 'vitest';
  * czy coś się kompiluje, tylko czy w repozytorium istnieje miejsce wywołania.
  */
 
-const REPO_ROOT = join(import.meta.dirname, '..', '..');
+const REPO_ROOT = join(import.meta.dirname, "..", "..");
 
 /** Cały kod produkcyjny aplikacji i bibliotek. Testy nas tu nie interesują. */
-const SOURCES = globSync('{apps,libs}/**/*.ts', {
+const SOURCES = globSync("{apps,libs}/**/*.ts", {
   cwd: REPO_ROOT,
-  exclude: (path) => path.includes('.spec.') || path.includes('node_modules'),
+  exclude: (path) => path.includes(".spec.") || path.includes("node_modules"),
 });
 
-const read = (file: string) => readFileSync(join(REPO_ROOT, file), 'utf8');
+const read = (file: string) => readFileSync(join(REPO_ROOT, file), "utf8");
 
-describe('reguły są wpięte, nie tylko napisane', () => {
+describe("reguły są wpięte", () => {
   // Strażnik strażnika. Gdyby glob przestał cokolwiek znajdować - na przykład
   // po przeniesieniu katalogów - oba testy niżej przechodziłyby zawsze
   // i nie pilnowały niczego. Fałszywa zieloność jest droższa niż brak testu.
-  it('widzi kod źródłowy, który ma sprawdzać', () => {
+  it("widzi kod źródłowy, który ma sprawdzać", () => {
     expect(SOURCES.length).toBeGreaterThan(5);
   });
 
@@ -40,10 +40,10 @@ describe('reguły są wpięte, nie tylko napisane', () => {
    * w trakcie nawigacji nieodpięty nasłuch to wyciek, który widać dopiero
    * po godzinie pracy - czyli nigdy na demie.
    */
-  it('każdy nasłuch na szynie zdarzeń ma miejsce odpięcia', () => {
+  it("każdy nasłuch na szynie zdarzeń ma miejsce odpięcia", () => {
     const subscribers = SOURCES.filter((file) => read(file).match(/\.on</));
 
-    // Jeśli nikt nie subskrybuje, ten test niczego nie dowodzi.
+    // Czy ktoś subskrybuje?
     expect(subscribers.length).toBeGreaterThan(0);
 
     const offenders = subscribers.filter(
@@ -62,11 +62,12 @@ describe('reguły są wpięte, nie tylko napisane', () => {
    * miejscu" jest wyłącznie deklaracją, a każda kopia formatowania rozjedzie
    * się z resztą przy pierwszej zmianie waluty albo separatora.
    */
-  const MONEY_COMPONENT = join('libs', 'shared-ui', 'src', 'lib', 'money.ts');
+  const MONEY_COMPONENT = join("libs", "shared-ui", "src", "lib", "money.ts");
 
-  it('grosze na złotówki zamienia wyłącznie komponent Money', () => {
+  it("grosze na złotówki zamienia wyłącznie komponent Money", () => {
     const offenders = SOURCES.filter(
-      (file) => file !== MONEY_COMPONENT && read(file).match(/\/ 100\)\.toFixed\(/),
+      (file) =>
+        file !== MONEY_COMPONENT && read(file).match(/\/ 100\)\.toFixed\(/),
     );
 
     expect(offenders).toEqual([]);
